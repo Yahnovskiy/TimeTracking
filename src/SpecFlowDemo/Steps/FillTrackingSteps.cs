@@ -1,6 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using SpecFlowDemo.PageObjects;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -20,7 +18,6 @@ namespace SpecFlowDemo.Steps
             timetrackingPage = new TimeTrackingPage(driver);
             driver.Navigate().GoToUrl(URL);
         }
-
         [Given(@"I Fill Time Tracking Form")]
         public void GivenIFillTimeTrackingForm(Table tableX)
         {

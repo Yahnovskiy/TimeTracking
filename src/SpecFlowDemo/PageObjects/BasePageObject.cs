@@ -38,9 +38,8 @@ namespace SpecFlowDemo.PageObjects
             {
                 return element.Displayed;
             }
-            catch (NoSuchElementException)
-            {
-                Console.WriteLine("ddddddddddddddd is not fount");
+            catch (Exception)
+            {                
                 return false;
             }
         }

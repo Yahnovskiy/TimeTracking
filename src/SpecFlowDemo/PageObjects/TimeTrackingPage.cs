@@ -1,12 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using SpecFlowDemo.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SpecFlowDemo.PageObjects
 {
@@ -40,18 +38,16 @@ namespace SpecFlowDemo.PageObjects
         public void FillTimeTrackingForm(TimeTrackingModel userData)
         {
             var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
-            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();
-            //StopButton.Click();
+            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();            
             foreach (var eachBusinessDay in businessDays)
             {
                 StopButton.Click();
+                CheckExistDate(eachBusinessDay.ToString("dd.MM.yyyy"));
                 Thread.Sleep(TimeSpan.FromSeconds(2));
                 HomePageNewItem.Click();
                 VerifyIframeLoaded();
                 driver.SwitchTo().Frame(SwitchToFrame);
-                DateField.Click();
-                DateField.Clear();
-                DateField.SendKeys(eachBusinessDay.ToString("dd.MM.yyyy"));
+                ChooseDate(eachBusinessDay.ToString("dd.MM.yyyy"));
                 ChooseActivity(userData.Activity);
                 SetTimeSpent(userData.TimeSpent);
                 ChooseCategory(userData.Category);
@@ -59,7 +55,7 @@ namespace SpecFlowDemo.PageObjects
                 ChooseRecordType(userData.RecordType);
 
                 SaveButton.Click();
-                //CancelButton.Click();                
+                Thread.Sleep(TimeSpan.FromSeconds(2));                
             }
         }
 
@@ -99,6 +95,35 @@ namespace SpecFlowDemo.PageObjects
             driver.FindElement(By.XPath(".//*[text() ='" + recordType + "']")).Click();
         }
 
+        public void ChooseDate(string dayOfWeek)
+        {
+            DateField.Click();
+            DateField.Clear();
+            DateField.SendKeys(dayOfWeek);
+        }
+
+        public void CheckExistDate(string eachDate)
+        {
+            Assert.Null(driver.FindElement(By.XPath(".//*[@id='spgridcontainer_WPQ2_leftpane_mainTable']//*[@title='" + eachDate + "']")));
+            //try
+            //{
+            //    var elem = driver.FindElement(By.XPath(".//*[@id='spgridcontainer_WPQ2_leftpane_mainTable']//*[@title='" + eachDate + "']")).Text;
+            //    Assert.AreNotEqual(eachDate, elem);
+                
+            //}
+            //catch (NoSuchElementException)
+            //{
+            //    return false;
+            //}
+        }
+    
+
+/// <summary>
+///Calculate business days methods 
+/// </summary>
+/// <param name="dayOfWeek"></param>
+/// <param name="daysCount"></param>
+/// <returns></returns>
         public static List<DateTime> GetBusinessDays(DateTime dayOfWeek, double daysCount)
         {
             var businessDays = new List<DateTime>();

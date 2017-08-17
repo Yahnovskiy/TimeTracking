@@ -7,6 +7,7 @@ Feature: FillTimetracking
 
 Scenario Outline: FillTimeTracking
 Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
+
 And I Fill Time Tracking Form
    |Activity    |TimeSpent    |Category    |SubProject    |RecordType    |
    |<Activity_e>|<TimeSpent_e>|<Category_e>|<SubProject_e>|<RecordType_e>|

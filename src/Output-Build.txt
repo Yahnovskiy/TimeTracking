@@ -1,0 +1,5 @@
+﻿1>------ Rebuild All started: Project: Pulse, Configuration: Debug Any CPU ------
+1>C:\Program Files (x86)\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(4604,5): warning MSB3061: Unable to delete file "D:\AutotestProj\TimeTracking_master\src\SpecFlowDemo\bin\Debug\chromedriver.exe". Access to the path 'D:\AutotestProj\TimeTracking_master\src\SpecFlowDemo\bin\Debug\chromedriver.exe' is denied.
+1>D:\AutotestProj\TimeTracking_master\src\SpecFlowDemo\PageObjects\TimeTrackingPage.cs(115,32,115,45): warning CS0109: The member 'TimeTrackingPage.IsBusinessDay(DateTime)' does not hide an inherited member. The new keyword is not required.
+1>  Pulse -> D:\AutotestProj\TimeTracking_master\src\SpecFlowDemo\bin\Debug\SpecFlowDemo.dll
+========== Rebuild All: 1 succeeded, 0 failed, 0 skipped ==========
