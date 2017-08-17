@@ -1,0 +1,1 @@
+"D:\AutotestProj\TimeTrackingmaster\src\packages\NUnit.ConsoleRunner.3.7.0\tools\nunit3-console.exe" "D:\AutotestProj\TimeTrackingmaster\src\SpecFlowDemo\bin\Debug\SpecFlowDemo.dll" --work "D:\AutotestProj\TimeTrackingmaster\src\test-results" --result TestResult.xml --output "output.txt" --err "error.txt" --labels=All

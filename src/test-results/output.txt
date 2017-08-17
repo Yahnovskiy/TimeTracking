@@ -1,0 +1,32 @@
+=> SpecFlowDemo.Features.FillTimetrackingFeature.FillTimeTracking("*","8,0","2 - Testing","40 Magnet O&M","1.1 - Work regular",null)
+Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
+-> done: FillTrackingSteps.GivenIOpenTimetrackingPage("http://ihome/site...") (1,5s)
+Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
+-> done.
+And I Fill Time Tracking Form
+  --- table step argument ---
+  | Activity | TimeSpent | Category    | SubProject    | RecordType         |
+  | *        | 8,0       | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular |
+-> done: FillTrackingSteps.GivenIFillTimeTrackingForm(<table>) (22,4s)
+Given I Fill Time Tracking Form
+| Activity | TimeSpent | Category    | SubProject    | RecordType         |
+| *        | 8,0       | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular |
+
+-> done.
+=> SpecFlowDemo.Features.FillTimetrackingFeature.FillTimeTracking("** ***","9,0","2 - Testing","40 Magnet O&M","1.1 - Work regular",null)
+Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
+-> done: FillTrackingSteps.GivenIOpenTimetrackingPage("http://ihome/site...") (1,5s)
+Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
+-> done.
+And I Fill Time Tracking Form
+  --- table step argument ---
+  | Activity | TimeSpent | Category    | SubProject    | RecordType         |
+  | ** ***   | 9,0       | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular |
+-> done: FillTrackingSteps.GivenIFillTimeTrackingForm(<table>) (22,2s)
+Given I Fill Time Tracking Form
+| Activity | TimeSpent | Category    | SubProject    | RecordType         |
+| ** ***   | 9,0       | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular |
+
+-> done.
+=> SpecFlowDemo.Features.FillTimetrackingFeature
+-> Using app.config

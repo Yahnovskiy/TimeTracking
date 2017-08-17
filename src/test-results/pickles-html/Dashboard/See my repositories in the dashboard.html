@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]>
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>See my repositories in the dashboard</title>
+    <link rel="stylesheet" href="../css/master.css" type="text/css" />
+    <link rel="stylesheet" href="../css/print.css" type="text/css" media="print" />
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/scripts.js" type="text/javascript"></script>
+    <script type="text/javascript">
+$(document).ready(function() {
+  initializeToc();
+});
+</script>
+    <!-- We are using Font Awesome - http://fortawesome.github.com/Font-Awesome - licensed under CC BY 3.0 -->
+  </head>
+  <body>
+    <div id="container">
+      <div id="top" />
+      <div id="toc">
+        <p class="tocCollapser" title="Collapse Table of Content">«</p>
+        <ul class="features">
+          <li class="file" id="root">
+            <a href="../index.html">Home</a>
+          </li>
+          <li>
+            <div class="directory">
+              <a href="./index.html">Dashboard</a>
+            </div>
+            <ul class="features">
+              <li class="file">
+                <a href="Links%20from%20the%20dashboard.html">Links from the dashboard</a>
+                <span class="float-right">
+                  <i class="icon-minus-sign failed" title="Failed"> </i>
+                </span>
+              </li>
+              <li class="file">
+                <span class="current">See my repositories in the dashboard</span>
+                <span class="float-right">
+                  <i class="icon-ok passed" title="Successful"> </i>
+                </span>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class="directory">
+              <a href="../Login/index.html">Login</a>
+            </div>
+            <ul class="features">
+              <li class="file">
+                <a href="../Login/Links%20from%20the%20login%20page.html">Links from the login page</a>
+                <span class="float-right">
+                  <i class="icon-ok passed" title="Successful"> </i>
+                </span>
+              </li>
+              <li class="file">
+                <a href="../Login/Login%20expecting%20failure.html">Login expecting failure</a>
+                <span class="float-right">
+                  <i class="icon-ok passed" title="Successful"> </i>
+                </span>
+              </li>
+              <li class="file">
+                <a href="../Login/Login%20success.html">Login success</a>
+                <span class="float-right">
+                  <i class="icon-ok passed" title="Successful"> </i>
+                </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="feature">
+        <div class="float-right">
+          <i class="icon-ok passed" title="Successful"> </i>
+        </div>
+        <h1>See my repositories in the dashboard</h1>
+        <p class="tags">Tags: <span>@Dashboard</span></p>
+        <div class="description">
+          <p>In order to navigate to repository
+As a logged in user in the dashboard
+I want see my repositories in the dashboard</p>
+        </div>
+        <ul id="scenarios">
+          <li class="scenario">
+            <div class="float-right">
+              <i class="icon-ok passed" title="Successful"> </i>
+            </div>
+            <div class="scenario-heading" id="user-can-create-new-repository-from-the-dashboard">
+              <h2>User can create new repository from the dashboard</h2>
+              <p class="tags">Tags: <span>@Dashboard</span></p>
+            </div>
+            <div class="steps">
+              <ul>
+                <li class="step">
+                  <span class="keyword">Given </span>I am in the dashboard</li>
+                <li class="step">
+                  <span class="keyword">When </span>I click New repository</li>
+                <li class="step">
+                  <span class="keyword">Then </span>I should see the create a new repository page</li>
+              </ul>
+            </div>
+            <a class="scenario-link" href="javascript:showImageLink('user-can-create-new-repository-from-the-dashboard')" title="Copy scenario link to clipboard.">
+              <i class="icon-link"> </i>
+            </a>
+          </li>
+          <li class="scenario">
+            <div class="float-right">
+              <i class="icon-ok passed" title="Successful"> </i>
+            </div>
+            <div class="scenario-heading" id="user-will-see-his-repositories-in-the-dashboard">
+              <h2>User will see his repositories in the dashboard</h2>
+              <p class="tags">Tags: <span>@Dashboard</span></p>
+            </div>
+            <div class="steps">
+              <ul>
+                <li class="step">
+                  <span class="keyword">Given </span>I am in the dashboard</li>
+                <li class="step">
+                  <span class="keyword">Then </span>I should see my repositories</li>
+              </ul>
+            </div>
+            <a class="scenario-link" href="javascript:showImageLink('user-will-see-his-repositories-in-the-dashboard')" title="Copy scenario link to clipboard.">
+              <i class="icon-link"> </i>
+            </a>
+          </li>
+          <li class="scenario">
+            <div class="float-right">
+              <i class="icon-ok passed" title="Successful"> </i>
+            </div>
+            <div class="scenario-heading" id="user-will-can-go-to-repository-from-the-dashboard">
+              <h2>User will can go to repository from the dashboard</h2>
+              <p class="tags">Tags: <span>@Dashboard</span></p>
+            </div>
+            <div class="steps">
+              <ul>
+                <li class="step">
+                  <span class="keyword">Given </span>I am in the dashboard</li>
+                <li class="step">
+                  <span class="keyword">When </span>I click the first repository</li>
+                <li class="step">
+                  <span class="keyword">Then </span>I should see the repository code page</li>
+              </ul>
+            </div>
+            <a class="scenario-link" href="javascript:showImageLink('user-will-can-go-to-repository-from-the-dashboard')" title="Copy scenario link to clipboard.">
+              <i class="icon-link"> </i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="footer">
+        <p>Generated on: 15 November 2016 18:22:01</p>
+        <p>Produced by Pickles, version 2.10.0.0</p>
+      </div>
+    </div>
+  </body>
+</html>

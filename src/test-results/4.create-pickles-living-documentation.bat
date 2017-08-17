@@ -1,0 +1,1 @@
+"D:\AutotestProj\TimeTrackingmaster\src\packages\Pickles.CommandLine.2.16.2\tools\pickles.exe" --feature-directory="D:\AutotestProj\TimeTrackingmaster\src\SpecFlowDemo\Features" --output-directory="D:\AutotestProj\TimeTrackingmaster\src\test-results" --documentation-format=dhtml --link-results-file="TestResult.xml" --test-results-format=nunit3
