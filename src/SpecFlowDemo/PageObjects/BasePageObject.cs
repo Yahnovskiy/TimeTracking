@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using TechTalk.SpecFlow;
 
 namespace SpecFlowDemo.PageObjects
 {
@@ -15,7 +16,7 @@ namespace SpecFlowDemo.PageObjects
         {
             Wait = new WebDriverWait(driver, new TimeSpan(0, 0, 0, 30));
             this.driver = driver;
-            PageFactory.InitElements(driver,this);
+            PageFactory.InitElements(driver, this);
 
             FluentWait = new DefaultWait<IWebDriver>(driver);
             FluentWait.Timeout = TimeSpan.FromSeconds(60);
@@ -36,10 +37,22 @@ namespace SpecFlowDemo.PageObjects
         {
             try
             {
-                return element.Displayed;
+                //var elem = element.Displayed;
+                //if (elem == true)
+                //{ return false; }
+                //else
+                //{ return true; }
+                if (element.Displayed)
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new Exception();                    
+                }
             }
             catch (Exception)
-            {                
+            {
                 return false;
             }
         }

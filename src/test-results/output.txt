@@ -1,17 +1,17 @@
 => SpecFlowDemo.Features.FillTimetrackingFeature.FillTimeTracking("*","8,0","2 - Testing","40 Magnet O&M","1.1 - Work regular",null)
 Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
--> done: FillTrackingSteps.GivenIOpenTimetrackingPage("http://ihome/site...") (1,6s)
+-> done: FillTrackingSteps.GivenIOpenTimetrackingPage("http://ihome/site...") (1,4s)
 Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
 -> done.
 And I Fill Time Tracking Form
   --- table step argument ---
   | Activity | TimeSpent | Category    | SubProject    | RecordType         |
   | *        | 8,0       | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular |
--> done: FillTrackingSteps.GivenIFillTimeTrackingForm(<table>) (28,5s)
+-> error: Time tracking already exist on 18.08.2017
 Given I Fill Time Tracking Form
 | Activity | TimeSpent | Category    | SubProject    | RecordType         |
 | *        | 8,0       | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular |
 
--> done.
+-> error: Time tracking already exist on 18.08.2017
 => SpecFlowDemo.Features.FillTimetrackingFeature
 -> Using app.config

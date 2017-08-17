@@ -5,6 +5,7 @@ using SpecFlowDemo.Model;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using TechTalk.SpecFlow;
 
 namespace SpecFlowDemo.PageObjects
 {
@@ -33,16 +34,27 @@ namespace SpecFlowDemo.PageObjects
         [FindsBy(How = How.XPath, Using = ".//*[@title='Record type Required Field']")]
         IWebElement RecordTypeButton { get; set; }
 
-        public TimeTrackingPage(IWebDriver driver) : base(driver) { }        
+        public TimeTrackingPage(IWebDriver driver) : base(driver) { }
+
+        public void CheckDates()
+        {
+            var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
+            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();
+            foreach (var eachBusinessDay in businessDays)
+            {
+                elementIsNotPresent(eachBusinessDay.ToString("dd.MM.yyyy"));                
+            }
+        }     
         
         public void FillTimeTrackingForm(TimeTrackingModel userData)
         {
+            CheckDates();
             var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
-            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();            
+            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray(); 
+                       
             foreach (var eachBusinessDay in businessDays)
             {
-                StopButton.Click();
-                CheckExistDate(eachBusinessDay.ToString("dd.MM.yyyy"));
+                StopButton.Click();                
                 Thread.Sleep(TimeSpan.FromSeconds(2));
                 HomePageNewItem.Click();
                 VerifyIframeLoaded();
@@ -102,31 +114,35 @@ namespace SpecFlowDemo.PageObjects
             DateField.SendKeys(dayOfWeek);
         }
 
-        public void CheckExistDate(string eachDate)
-        {
-            Assert.Null(driver.FindElement(By.XPath(".//*[@id='spgridcontainer_WPQ2_leftpane_mainTable']//*[@title='" + eachDate + "']")));
-            //try
-            //{
-            //    var elem = driver.FindElement(By.XPath(".//*[@id='spgridcontainer_WPQ2_leftpane_mainTable']//*[@title='" + eachDate + "']")).Text;
-            //    Assert.AreNotEqual(eachDate, elem);
-                
-            //}
-            //catch (NoSuchElementException)
-            //{
-            //    return false;
-            //}
-        }
-    
+        //public void CountofDates(string eachDate)
+        //{
+            
+        //}
 
-/// <summary>
-///Calculate business days methods 
-/// </summary>
-/// <param name="dayOfWeek"></param>
-/// <param name="daysCount"></param>
-/// <returns></returns>
-        public static List<DateTime> GetBusinessDays(DateTime dayOfWeek, double daysCount)
+
+        public bool elementIsNotPresent(string eachDate)
         {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(300);
+            if (driver.FindElements(By.XPath(".//*[@title='" + eachDate + "']")).Count > 0)
+            {                
+                throw new Exception("Time tracking already exist on " + eachDate);
+            }
+            else
+            {                
+                return true;
+            }            
+        }
+
+        /// <summary>
+        ///Calculate business days methods 
+        /// </summary>
+        /// <param name="dayOfWeek"></param>
+        /// <param name="daysCount"></param>
+        /// <returns></returns>
+        public static List<DateTime> GetBusinessDays(DateTime dayOfWeek, double daysCount)
+        {           
             var businessDays = new List<DateTime>();
+            
             while (daysCount >= 0)
             {
                 var day = dayOfWeek.AddDays(daysCount).Date;
@@ -134,7 +150,7 @@ namespace SpecFlowDemo.PageObjects
                     businessDays.Add(day);
                 daysCount -= 1;
             }
-            return businessDays;
+            return businessDays;            
         }
 
         public static new bool IsBusinessDay(DateTime date)

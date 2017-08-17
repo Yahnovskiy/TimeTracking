@@ -1,0 +1,10 @@
+﻿------ Discover test started ------
+NUnit Adapter 3.8.0.0: Test discovery starting
+NUnit Adapter 3.8.0.0: Test discovery complete
+========== Discover test finished: 1 found (0:00:00,4997507) ==========
+------ Run test started ------
+NUnit Adapter 3.8.0.0: Test execution started
+Running selected tests in D:\AutotestProj\TimeTracking_master\src\SpecFlowDemo\bin\Debug\SpecFlowDemo.dll
+NUnit3TestExecutor converted 1 of 1 NUnit test cases
+NUnit Adapter 3.8.0.0: Test execution complete
+========== Run test finished: 1 run (0:00:17,6008572) ==========
