@@ -21,7 +21,7 @@ namespace SpecFlowDemo
         [AfterScenario]
         public void QuitBrowser()
         {
-            ScenarioContext.Get<IWebDriver>("driver").Quit();
+            ScenarioContext.Get<IWebDriver>("driver").Quit();            
         }
 
         [AfterStep]

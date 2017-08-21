@@ -1,9 +1,13 @@
-﻿using NUnit.Framework;
+﻿using HtmlAgilityPack;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using SpecFlowDemo.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -50,10 +54,11 @@ namespace SpecFlowDemo.PageObjects
         {
             CheckDates();
             var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
-            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray(); 
-                       
+            var businessDays = GetBusinessDays(startOfWeek, 5).ToList();
+            businessDays.Reverse();
+
             foreach (var eachBusinessDay in businessDays)
-            {
+            {                
                 StopButton.Click();                
                 Thread.Sleep(TimeSpan.FromSeconds(2));
                 HomePageNewItem.Click();
@@ -114,12 +119,6 @@ namespace SpecFlowDemo.PageObjects
             DateField.SendKeys(dayOfWeek);
         }
 
-        //public void CountofDates(string eachDate)
-        //{
-            
-        //}
-
-
         public bool elementIsNotPresent(string eachDate)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(300);
@@ -133,12 +132,22 @@ namespace SpecFlowDemo.PageObjects
             }            
         }
 
+        public bool elementIsNotPresentxpath(string eachDate)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(300);
+            if (driver.FindElements(By.XPath(".//*[@title='" + eachDate + "']")).Count > 0)
+            {
+                throw new Exception("Time tracking already exist on " + eachDate);
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         ///Calculate business days methods 
-        /// </summary>
-        /// <param name="dayOfWeek"></param>
-        /// <param name="daysCount"></param>
-        /// <returns></returns>
+        /// </summary>        
         public static List<DateTime> GetBusinessDays(DateTime dayOfWeek, double daysCount)
         {           
             var businessDays = new List<DateTime>();
@@ -155,8 +164,30 @@ namespace SpecFlowDemo.PageObjects
 
         public static new bool IsBusinessDay(DateTime date)
         {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            WebClient wc = new WebClient();
+            string raw = wc.DownloadString("http://www.timeanddate.com/holidays/ukraine/2017");
+
+            HtmlDocument htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(raw);
+
+            var imgXpath = htmlDoc.DocumentNode.SelectNodes(".//*[@class='c0']/th");
+            var dd = imgXpath.ToString();
+            DateTime myDate = DateTime.ParseExact(dd, "MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+
+
+
+            //foreach (HtmlNode node in imgXpath)
+            //{
+            //    string strValue = node.InnerText;
+            //}
+
+
             var day = date.DayOfWeek;
-            var res = (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday) ? false : true;
+            var res = (
+                day == DayOfWeek.Saturday || day == DayOfWeek.Sunday) ? false : true;
             return res;
         }
 
@@ -167,34 +198,6 @@ namespace SpecFlowDemo.PageObjects
                 date = date.AddDays(-1);
             }
             return date;
-        }
-        //public void ForEachDate()
-        //{
-        //    var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
-        //    var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();            
-        //    foreach (var eachBusinessDay in businessDays)
-        //    {
-        //        //try
-        //        //{
-        //        //    Assert.AreEqual(true, ElementIsPresent(_driver.FindElement(By.XPath(".//*[@title='" + eachBusinessDay.ToString("dd.MM.yyyy") + "']"))));
-        //        //}
-        //        //catch
-        //        //{
-        //        //    return; 
-        //        //}
-        //        StopButton.Click();
-        //        HomePageNewItem.Click();
-        //        _driver.SwitchTo().Frame(_driver.FindElement(By.XPath(".//*[@class ='ms-dlgFrame']")));
-        //        DateField.Click();
-        //        DateField.Clear();
-        //        DateField.SendKeys(eachBusinessDay.ToString("dd.MM.yyyy"));
-        //        ActivityField.Clear();
-        //        ActivityField.SendKeys("*");
-        //        CategoryButton.Click();
-        //        _driver.FindElement(By.XPath(".//*[text() ='"+category+"2 - Testing']"));
-        //        SavelButton.Click();
-        //        FluentWait.Until(ExpectedConditions.ElementIsVisible(By.XPath(".//*[@title='" + eachBusinessDay.ToString("dd.MM.yyyy") + "']")));
-        //    }
-        //}
+        }    
     }
 }

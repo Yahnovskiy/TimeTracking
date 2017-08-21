@@ -34,27 +34,15 @@ namespace SpecFlowDemo.PageObjects
         }
 
         public static bool ElementIsPresent(IWebElement element)
-        {
-            try
-            {
-                //var elem = element.Displayed;
-                //if (elem == true)
-                //{ return false; }
-                //else
-                //{ return true; }
+        {                       
                 if (element.Displayed)
                 {
                     return true;
                 }
                 else
                 {
-                    throw new Exception();                    
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+                    throw new Exception();
+                }           
+        }        
     }
 }

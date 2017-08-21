@@ -76,13 +76,13 @@ jsonPWrapper ({
             "Tags": [],
             "Result": {
               "WasExecuted": true,
-              "WasSuccessful": true
+              "WasSuccessful": false
             }
           }
         ],
         "Result": {
           "WasExecuted": true,
-          "WasSuccessful": true
+          "WasSuccessful": false
         },
         "Tags": [
           "@Login"
@@ -90,7 +90,7 @@ jsonPWrapper ({
       },
       "Result": {
         "WasExecuted": true,
-        "WasSuccessful": true
+        "WasSuccessful": false
       }
     }
   ],
@@ -99,8 +99,8 @@ jsonPWrapper ({
       {
         "Tag": "@Login",
         "Total": 1,
-        "Passing": 1,
-        "Failing": 0,
+        "Passing": 0,
+        "Failing": 1,
         "Inconclusive": 0
       }
     ],
@@ -108,8 +108,8 @@ jsonPWrapper ({
       {
         "Folder": "Login success.feature",
         "Total": 1,
-        "Passing": 1,
-        "Failing": 0,
+        "Passing": 0,
+        "Failing": 1,
         "Inconclusive": 0
       }
     ],
@@ -124,18 +124,18 @@ jsonPWrapper ({
     ],
     "Scenarios": {
       "Total": 1,
-      "Passing": 1,
-      "Failing": 0,
+      "Passing": 0,
+      "Failing": 1,
       "Inconclusive": 0
     },
     "Features": {
       "Total": 1,
-      "Passing": 1,
-      "Failing": 0,
+      "Passing": 0,
+      "Failing": 1,
       "Inconclusive": 0
     }
   },
   "Configuration": {
-    "GeneratedOn": "17 серпня 2017 13:02:07"
+    "GeneratedOn": "18 серпня 2017 13:14:16"
   }
 });

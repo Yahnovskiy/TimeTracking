@@ -16,7 +16,8 @@ jsonPWrapper ({
                     "TimeSpent_e",
                     "Category_e",
                     "SubProject_e",
-                    "RecordType_e"
+                    "RecordType_e",
+                    "Bilable_e"
                   ],
                   "DataRows": [
                     [
@@ -24,7 +25,8 @@ jsonPWrapper ({
                       "8,0",
                       "2 - Testing",
                       "40 Magnet O&M",
-                      "1.1 - Work regular"
+                      "1.1 - Work regular",
+                      "true"
                     ]
                   ]
                 },
@@ -53,7 +55,8 @@ jsonPWrapper ({
                     "TimeSpent",
                     "Category",
                     "SubProject",
-                    "RecordType"
+                    "RecordType",
+                    "Bilable"
                   ],
                   "DataRows": [
                     [
@@ -61,14 +64,15 @@ jsonPWrapper ({
                       "<TimeSpent_e>",
                       "<Category_e>",
                       "<SubProject_e>",
-                      "<RecordType_e>"
+                      "<RecordType_e>",
+                      "<Bilable_e>"
                     ]
                   ]
                 },
                 "StepComments": [],
                 "AfterLastStepComments": [
                   {
-                    "Text": "#| ** ***      | 9,0        | 2 - Testing\t | 40 Magnet O&M   | 1.1 - Work regular |"
+                    "Text": "#|*          | 9,0         | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular | false     |"
                   }
                 ]
               }
@@ -136,6 +140,6 @@ jsonPWrapper ({
     }
   },
   "Configuration": {
-    "GeneratedOn": "17 серпня 2017 19:01:46"
+    "GeneratedOn": "21 серпня 2017 18:06:07"
   }
 });

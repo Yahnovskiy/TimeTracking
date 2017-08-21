@@ -13,6 +13,7 @@ namespace SpecFlowDemo.Model
         public string Category { get; set; }
         public string SubProject { get; set; }
         public string RecordType { get; set; }
+        public bool Bilable { get; set; }
 
         public TimeTrackingModel() { }
     }

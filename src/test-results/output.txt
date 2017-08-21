@@ -1,6 +1,6 @@
 => SpecFlowDemo.Features.FillTimetrackingFeature.FillTimeTracking("*","8,0","2 - Testing","40 Magnet O&M","1.1 - Work regular",null)
 Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
--> done: FillTrackingSteps.GivenIOpenTimetrackingPage("http://ihome/site...") (1,4s)
+-> done: FillTrackingSteps.GivenIOpenTimetrackingPage("http://ihome/site...") (1,5s)
 Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
 -> done.
 And I Fill Time Tracking Form
