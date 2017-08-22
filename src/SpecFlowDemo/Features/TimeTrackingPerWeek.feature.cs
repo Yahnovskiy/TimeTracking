@@ -91,11 +91,9 @@ testRunner.Given("I Open Timetracking Page \'http://ihome/sites/PO/Deloitte/Stud
                         string.Format("{0}", category_E),
                         string.Format("{0}", subProject_E),
                         string.Format("{0}", recordType_E),
-                        "<Bilable_e>"});
-#line 11
+                        string.Format("{0}", bilableOFF_E)});
+#line 10
 testRunner.And("I Fill Time Tracking Form", ((string)(null)), table1, "And ");
-#line 14
- testRunner.And("I choose switch OFF bilable if \'<Bilable_e>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

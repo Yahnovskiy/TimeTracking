@@ -34,12 +34,12 @@ namespace SpecFlowDemo.Steps
             var ISNotBilable = Convert.ToBoolean(isBilableOFF);
             if (ISNotBilable) { Then(@"I choose switch OFF bilable"); }
         }
-        [When(@"I choose switch OFF bilable")]
-        [Then(@"I choose switch OFF bilable")]
-        public void ISwitchToMeetingTab()
-        {
-            timetrackingPage.SwitchOFFBilable();
-        }
+        //[When(@"I choose switch OFF bilable")]
+        //[Then(@"I choose switch OFF bilable")]
+        //public void ISwitchToMeetingTab()
+        //{
+        //   // timetrackingPage.SwitchOFFBilable();
+        //}
 
 
     }

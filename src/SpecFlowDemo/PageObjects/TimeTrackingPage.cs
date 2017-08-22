@@ -77,7 +77,7 @@ namespace SpecFlowDemo.PageObjects
                 ChooseActivity(userData.Activity);
                 SetTimeSpent(userData.TimeSpent);
                 ChooseCategory(userData.Category);
-                //SwitchOFFBilable();
+                SwitchOFFBilable(userData.BilableOFF);
                 ChooseSubProject(userData.SubProject);
                 ChooseRecordType(userData.RecordType);
 
@@ -142,15 +142,13 @@ namespace SpecFlowDemo.PageObjects
             }            
         }
 
-        public void SwitchOFFBilable()
+        public void SwitchOFFBilable(bool billableOFF)
         {
-            //WaitForElement(CheckBoxBilable);          
-            
-            if (CheckBoxBilable.Selected)
+            bool bilab = billableOFF;
+            if (bilab == false) //|| CheckBoxBilable.Selected)
             {
                 CheckBoxBilable.Click();
-            }
-            else {doNothing}
+            }           
         }
         
 
