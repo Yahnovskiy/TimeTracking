@@ -25,7 +25,7 @@ namespace SpecFlowDemo.Features
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Login success.feature"
+#line 1 "TimeTrackingPerWeek.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

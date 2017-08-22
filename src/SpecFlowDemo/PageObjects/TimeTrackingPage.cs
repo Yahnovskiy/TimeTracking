@@ -59,8 +59,7 @@ namespace SpecFlowDemo.PageObjects
             businessDays.Reverse();
 
             foreach (var eachBusinessDay in businessDays)
-            {
-                Thread.Sleep(TimeSpan.FromSeconds(2));
+            {                
                 StopButton.Click();                
                 Thread.Sleep(TimeSpan.FromSeconds(2));
                 HomePageNewItem.Click();
@@ -74,7 +73,7 @@ namespace SpecFlowDemo.PageObjects
                 ChooseRecordType(userData.RecordType);
 
                 SaveButton.Click();
-                Thread.Sleep(TimeSpan.FromSeconds(2));                
+                Thread.Sleep(TimeSpan.FromSeconds(3));                
             }
         }
 
