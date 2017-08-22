@@ -73,15 +73,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\TimeTrackingPerWeek.feature.cs">
+    <Compile Include="Features\TimeTrackingScenario.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TimeTrackingPerWeek.feature</DependentUpon>
+      <DependentUpon>TimeTrackingScenario.feature</DependentUpon>
     </Compile>
     <Compile Include="Hooks.cs" />
     <Compile Include="Model\TimeTrackingModel.cs" />
     <Compile Include="PageObjects\BasePageObject.cs" />
-    <Compile Include="PageObjects\HolidaysPage.cs" />
     <Compile Include="PageObjects\TimeTrackingPage.cs" />
     <Compile Include="PageObjects\WebElementExtensions.cs" />
     <Compile Include="ParallelExecution.cs" />
@@ -90,9 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\TimeTrackingPerWeek.feature">
+    <None Include="Features\TimeTrackingScenario.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>TimeTrackingPerWeek.feature.cs</LastGenOutput>
+      <LastGenOutput>TimeTrackingScenario.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

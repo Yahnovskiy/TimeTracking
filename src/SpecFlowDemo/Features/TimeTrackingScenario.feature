@@ -8,14 +8,14 @@ Feature: FillTimetracking
 Scenario Outline: FillTimeTracking
 Given I Open Timetracking Page 'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20Time%20Tracking'
 And I Fill Time Tracking Form
-   | Activity     | TimeSpent     | Category     | SubProject     | RecordType     | BilableOFF     |
-   | <Activity_e> | <TimeSpent_e> | <Category_e> | <SubProject_e> | <RecordType_e> | <BilableOFF_e> |
+   | Activity     | TimeSpent     | Category     | SubProject     | RecordType     | Billable     |
+   | <Activity_e> | <TimeSpent_e> | <Category_e> | <SubProject_e> | <RecordType_e> | <Billable_e> |
  #And I choose switch OFF bilable if '<Bilable_e>'
 
  Examples:
-| Activity_e | TimeSpent_e | Category_e  | SubProject_e  | RecordType_e       | BilableOFF_e |
-| *          | 8,0         | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular | true         |           
-#|For PTO     | 9,0         | 2 - Testing | 40 Magnet O&M | 2.6 - Absence		 | false        |
+| Activity_e | TimeSpent_e | Category_e  | SubProject_e  | RecordType_e       | Billable_e |
+| *          | 8,0         | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular | false       |           
+#| PTO		  | 0,0         | 2 - Testing | 40 Magnet O&M | 2.6 - Absence	   | false        |
 
 #1.1 - Work regular
 #1.2 - Work overtime

@@ -39,6 +39,8 @@ namespace SpecFlowDemo.PageObjects
         IWebElement RecordTypeButton { get; set; }
         [FindsBy(How = How.CssSelector, Using = "input:checked[type='checkbox'][title='Billable']")]
         IWebElement CheckBoxBilable { get; set; }
+        [FindsBy(How = How.CssSelector, Using = "input:not(checked)[type='checkbox'][title='Billable']")]
+        IWebElement CheckBoxBilableDisabled { get; set; }
         // CSS selector, for all checkboxes which are checked
         // input:checked[type='checkbox']
         // CSS selector, for all checkboxes which are not checked
@@ -47,20 +49,9 @@ namespace SpecFlowDemo.PageObjects
         //input[@type='checkbox' and @checked='xyz']
 
         public TimeTrackingPage(IWebDriver driver) : base(driver) { }
-
-        public void CheckDates()
-        {
-            var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
-            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();
-            foreach (var eachBusinessDay in businessDays)
-            {
-                ElementIsNotPresent(eachBusinessDay.ToString("dd.MM.yyyy"));                
-            }
-        }     
-        
+                
         public void FillTimeTrackingForm(TimeTrackingModel userData)
         {
-            GetHolidays();
             CheckDates();
             var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
             var businessDays = GetBusinessDays(startOfWeek, 5).ToList();
@@ -77,12 +68,22 @@ namespace SpecFlowDemo.PageObjects
                 ChooseActivity(userData.Activity);
                 SetTimeSpent(userData.TimeSpent);
                 ChooseCategory(userData.Category);
-                SwitchOFFBilable(userData.BilableOFF);
+                SwitchOFFBilable(userData.Billable);
                 ChooseSubProject(userData.SubProject);
                 ChooseRecordType(userData.RecordType);
 
                 SaveButton.Click();
                 Thread.Sleep(TimeSpan.FromSeconds(3));                
+            }
+        }
+
+        public void CheckDates()
+        {
+            var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
+            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();
+            foreach (var eachBusinessDay in businessDays)
+            {
+                DateIsNotPresent(eachBusinessDay.ToString("dd.MM.yyyy"));
             }
         }
 
@@ -129,29 +130,45 @@ namespace SpecFlowDemo.PageObjects
             DateField.SendKeys(dayOfWeek);
         }
 
-        public bool ElementIsNotPresent(string eachDate)
+        public void DateIsNotPresent(string eachDate)
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(300);
-            if (driver.FindElements(By.XPath(".//*[@title='" + eachDate + "']")).Count > 0)
-            {                
-                throw new Exception("Time tracking already exist on " + eachDate);
-            }
-            else
-            {                
-                return true;
-            }            
+            ElementIsNotPresent(eachDate);           
         }
 
         public void SwitchOFFBilable(bool billableOFF)
         {
-            bool bilab = billableOFF;
-            if (bilab == false) //|| CheckBoxBilable.Selected)
+            bool checkboxStatus = billableOFF;
+            if (checkboxStatus == true)
             {
-                CheckBoxBilable.Click();
-            }           
+                if (!CheckBoxBilableDisabled.Selected)
+                {
+                    try
+                    {
+                        CheckBoxBilableDisabled.Click();
+                    }
+                    catch
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            if (checkboxStatus == false)
+            {
+                if (CheckBoxBilableDisabled.Selected)
+                {
+                    try
+                    {
+                        CheckBoxBilable.Click();
+                    }
+                    catch
+                    {
+                        throw new Exception();
+                    }
+                }
+
+            }
         }
         
-
         /// <summary>
         ///Calculate business days methods 
         /// </summary>        

@@ -62,6 +62,20 @@ namespace SpecFlowDemo.PageObjects
                 Console.WriteLine(e.Message);                
                 return false;
             }
-        }                
+        }
+
+        public bool ElementIsNotPresent(string eachDate)
+        {
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(300);
+            if (driver.FindElements(By.XPath(".//*[@title='" + eachDate + "']")).Count > 0)
+            {
+                throw new Exception("Time tracking already exist on " + eachDate);
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
