@@ -46,19 +46,21 @@ namespace SpecFlowDemo.PageObjects
             var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();
             foreach (var eachBusinessDay in businessDays)
             {
-                elementIsNotPresent(eachBusinessDay.ToString("dd.MM.yyyy"));                
+                ElementIsNotPresent(eachBusinessDay.ToString("dd.MM.yyyy"));                
             }
         }     
         
         public void FillTimeTrackingForm(TimeTrackingModel userData)
         {
+            GetHolidays();
             CheckDates();
             var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
             var businessDays = GetBusinessDays(startOfWeek, 5).ToList();
             businessDays.Reverse();
 
             foreach (var eachBusinessDay in businessDays)
-            {                
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(2));
                 StopButton.Click();                
                 Thread.Sleep(TimeSpan.FromSeconds(2));
                 HomePageNewItem.Click();
@@ -119,7 +121,7 @@ namespace SpecFlowDemo.PageObjects
             DateField.SendKeys(dayOfWeek);
         }
 
-        public bool elementIsNotPresent(string eachDate)
+        public bool ElementIsNotPresent(string eachDate)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(300);
             if (driver.FindElements(By.XPath(".//*[@title='" + eachDate + "']")).Count > 0)
@@ -131,20 +133,7 @@ namespace SpecFlowDemo.PageObjects
                 return true;
             }            
         }
-
-        public bool elementIsNotPresentxpath(string eachDate)
-        {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMilliseconds(300);
-            if (driver.FindElements(By.XPath(".//*[@title='" + eachDate + "']")).Count > 0)
-            {
-                throw new Exception("Time tracking already exist on " + eachDate);
-            }
-            else
-            {
-                return true;
-            }
-        }
-
+        
         /// <summary>
         ///Calculate business days methods 
         /// </summary>        
@@ -161,34 +150,19 @@ namespace SpecFlowDemo.PageObjects
             }
             return businessDays;            
         }
-
+       
         public static new bool IsBusinessDay(DateTime date)
         {
-            ServicePointManager.Expect100Continue = true;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            WebClient wc = new WebClient();
-            string raw = wc.DownloadString("http://www.timeanddate.com/holidays/ukraine/2017");
-
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(raw);
-
-            var imgXpath = htmlDoc.DocumentNode.SelectNodes(".//*[@class='c0']/th");
-            var dd = imgXpath.ToString();
-            DateTime myDate = DateTime.ParseExact(dd, "MM-dd",
-                                       System.Globalization.CultureInfo.InvariantCulture);
-
-
-
-            //foreach (HtmlNode node in imgXpath)
-            //{
-            //    string strValue = node.InnerText;
-            //}
-
-
             var day = date.DayOfWeek;
-            var res = (
-                day == DayOfWeek.Saturday || day == DayOfWeek.Sunday) ? false : true;
-            return res;
+            var holidays = GetHolidays();
+            return (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday || holidays.Contains(date)) ? false : true;
+            //if (day == DayOfWeek.Saturday
+            //    || day == DayOfWeek.Sunday
+            //    || holidays.Contains(date))
+            //{
+            //    return false;
+            //}
+            //return true;
         }
 
         public static DateTime GetStartOfTheWeek(DateTime date, DayOfWeek startDayOfWeek)
@@ -198,6 +172,37 @@ namespace SpecFlowDemo.PageObjects
                 date = date.AddDays(-1);
             }
             return date;
-        }    
+        } 
+        
+        public static List<DateTime> GetHolidays()
+        {
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+            WebClient wc = new WebClient();
+
+            string raw = wc.DownloadString($"http://www.timeanddate.com/holidays/ukraine/{DateTime.Today.Year}");
+
+            HtmlDocument htmlDoc = new HtmlDocument();
+            htmlDoc.LoadHtml(raw);
+            var imgXpath = htmlDoc.DocumentNode.SelectNodes(".//*[@class='zebra fw tb-cl tb-hover']/tbody");
+            List<DateTime> holidays = new List<DateTime>();
+
+            foreach (HtmlNode table in imgXpath)
+            {
+                Console.WriteLine("Found" + table.Id);
+                foreach( HtmlNode row in table.SelectNodes("tr"))
+                {
+                    Console.WriteLine("row");
+                    foreach(HtmlNode cell in row.SelectNodes("th"))
+                    {
+                        Console.WriteLine("cell" + cell.InnerText);
+                        var outDate = cell.InnerText;
+                        var parsedDate = DateTime.Parse(outDate);
+                        holidays.Add(parsedDate);
+                    }
+                }                
+            }
+            return holidays;
+        }
     }
 }
