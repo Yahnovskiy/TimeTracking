@@ -3,6 +3,7 @@ using SpecFlowDemo.PageObjects;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using SpecFlowDemo.Model;
+using System;
 
 namespace SpecFlowDemo.Steps
 {
@@ -24,7 +25,22 @@ namespace SpecFlowDemo.Steps
             TimeTrackingModel userData = tableX.CreateInstance<TimeTrackingModel>();
             var timetrackingPage = new TimeTrackingPage(driver);
             timetrackingPage.FillTimeTrackingForm(userData);
-        }        
+        }
+        [Given(@"I choose switch OFF bilable if '(.*)'")]
+        [When(@"I choose switch OFF bilable if '(.*)'")]
+        [Then(@"I choose switch OFF bilable if '(.*)'")]
+        public void ISwitchToMeetingTabIf(string isBilableOFF)
+        {
+            var ISNotBilable = Convert.ToBoolean(isBilableOFF);
+            if (ISNotBilable) { Then(@"I choose switch OFF bilable"); }
+        }
+        [When(@"I choose switch OFF bilable")]
+        [Then(@"I choose switch OFF bilable")]
+        public void ISwitchToMeetingTab()
+        {
+            timetrackingPage.SwitchOFFBilable();
+        }
+
 
     }
 }

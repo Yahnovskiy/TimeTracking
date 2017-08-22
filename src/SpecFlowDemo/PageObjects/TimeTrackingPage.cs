@@ -37,6 +37,14 @@ namespace SpecFlowDemo.PageObjects
         IWebElement SubProjectButton { get; set; }
         [FindsBy(How = How.XPath, Using = ".//*[@title='Record type Required Field']")]
         IWebElement RecordTypeButton { get; set; }
+        [FindsBy(How = How.CssSelector, Using = "input:checked[type='checkbox'][title='Billable']")]
+        IWebElement CheckBoxBilable { get; set; }
+        // CSS selector, for all checkboxes which are checked
+        // input:checked[type='checkbox']
+        // CSS selector, for all checkboxes which are not checked
+        //input:not(:checked)[type='checkbox']
+        // Xpath, only works in certain situations
+        //input[@type='checkbox' and @checked='xyz']
 
         public TimeTrackingPage(IWebDriver driver) : base(driver) { }
 
@@ -69,6 +77,7 @@ namespace SpecFlowDemo.PageObjects
                 ChooseActivity(userData.Activity);
                 SetTimeSpent(userData.TimeSpent);
                 ChooseCategory(userData.Category);
+                //SwitchOFFBilable();
                 ChooseSubProject(userData.SubProject);
                 ChooseRecordType(userData.RecordType);
 
@@ -132,7 +141,19 @@ namespace SpecFlowDemo.PageObjects
                 return true;
             }            
         }
+
+        public void SwitchOFFBilable()
+        {
+            //WaitForElement(CheckBoxBilable);          
+            
+            if (CheckBoxBilable.Selected)
+            {
+                CheckBoxBilable.Click();
+            }
+            else {doNothing}
+        }
         
+
         /// <summary>
         ///Calculate business days methods 
         /// </summary>        

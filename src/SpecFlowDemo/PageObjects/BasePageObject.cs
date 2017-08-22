@@ -43,6 +43,25 @@ namespace SpecFlowDemo.PageObjects
                 {
                     throw new Exception();
                 }           
-        }        
+        }
+
+        public bool WaitForElement(IWebElement element, TimeSpan? timeout = null)
+        {
+            timeout = timeout == null ? timeout = driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30) : timeout;
+            var retryFrequency = driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            var postTimeout = driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+
+            try
+            {
+               // WaitForElement(element, "Element is absent on the screen", timeout, retryFrequency, postTimeout);
+                return true;
+            }
+            
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);                
+                return false;
+            }
+        }                
     }
 }

@@ -69,7 +69,7 @@ namespace SpecFlowDemo.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FillTimeTracking")]
         [NUnit.Framework.TestCaseAttribute("*", "8,0", "2 - Testing", "40 Magnet O&M", "1.1 - Work regular", "true", null)]
-        public virtual void FillTimeTracking(string activity_E, string timeSpent_E, string category_E, string subProject_E, string recordType_E, string bilable_E, string[] exampleTags)
+        public virtual void FillTimeTracking(string activity_E, string timeSpent_E, string category_E, string subProject_E, string recordType_E, string bilableOFF_E, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FillTimeTracking", exampleTags);
 #line 8
@@ -84,16 +84,18 @@ testRunner.Given("I Open Timetracking Page \'http://ihome/sites/PO/Deloitte/Stud
                         "Category",
                         "SubProject",
                         "RecordType",
-                        "Bilable"});
+                        "BilableOFF"});
             table1.AddRow(new string[] {
                         string.Format("{0}", activity_E),
                         string.Format("{0}", timeSpent_E),
                         string.Format("{0}", category_E),
                         string.Format("{0}", subProject_E),
                         string.Format("{0}", recordType_E),
-                        string.Format("{0}", bilable_E)});
+                        "<Bilable_e>"});
 #line 11
 testRunner.And("I Fill Time Tracking Form", ((string)(null)), table1, "And ");
+#line 14
+ testRunner.And("I choose switch OFF bilable if \'<Bilable_e>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
