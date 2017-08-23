@@ -32,8 +32,7 @@ namespace SpecFlowDemo.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FillTimetracking", "\tIn order to access to my Github account\r\n\tAs a user with existing account\r\n\tI wa" +
-                    "nt to be able to sign in to GitHub ", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "FillTimetracking", "\tIn order to fill time tracking for lazy people", ProgrammingLanguage.CSharp, new string[] {
                         "Login"});
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -68,13 +67,13 @@ namespace SpecFlowDemo.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FillTimeTracking")]
-        [NUnit.Framework.TestCaseAttribute("*", "8,0", "2 - Testing", "40 Magnet O&M", "1.1 - Work regular", "false", null)]
+        [NUnit.Framework.TestCaseAttribute("*", "8,0", "2 - Testing", "40 Magnet O&M", "1.1 - Work regular", "true", null)]
         public virtual void FillTimeTracking(string activity_E, string timeSpent_E, string category_E, string subProject_E, string recordType_E, string billable_E, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FillTimeTracking", exampleTags);
-#line 8
+#line 6
 this.ScenarioSetup(scenarioInfo);
-#line 9
+#line 7
 testRunner.Given("I Open Timetracking Page \'http://ihome/sites/PO/Deloitte/StudioK/Lists/StudioK%20" +
                     "Time%20Tracking\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
@@ -92,7 +91,7 @@ testRunner.Given("I Open Timetracking Page \'http://ihome/sites/PO/Deloitte/Stud
                         string.Format("{0}", subProject_E),
                         string.Format("{0}", recordType_E),
                         string.Format("{0}", billable_E)});
-#line 10
+#line 8
 testRunner.And("I Fill Time Tracking Form", ((string)(null)), table1, "And ");
 #line hidden
             this.ScenarioCleanup();

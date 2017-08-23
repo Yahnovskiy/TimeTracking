@@ -1,8 +1,6 @@
 ﻿@Login
 Feature: FillTimetracking
-	In order to access to my Github account
-	As a user with existing account
-	I want to be able to sign in to GitHub 
+	In order to fill time tracking for lazy people
 
 
 Scenario Outline: FillTimeTracking
@@ -14,7 +12,7 @@ And I Fill Time Tracking Form
 
  Examples:
 | Activity_e | TimeSpent_e | Category_e  | SubProject_e  | RecordType_e       | Billable_e |
-| *          | 8,0         | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular | false       |           
+| *          | 8,0         | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular | true       |           
 #| PTO		  | 0,0         | 2 - Testing | 40 Magnet O&M | 2.6 - Absence	   | false        |
 
 #1.1 - Work regular
