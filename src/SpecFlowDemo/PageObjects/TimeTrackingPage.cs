@@ -224,13 +224,13 @@ namespace SpecFlowDemo.PageObjects
 
             foreach (HtmlNode table in imgXpath)
             {
-                Console.WriteLine("Found" + table.Id);
+                //Console.WriteLine("Found" + table.Id);
                 foreach( HtmlNode row in table.SelectNodes("tr"))
                 {
-                    Console.WriteLine("row");
+                    //Console.WriteLine("row");
                     foreach(HtmlNode cell in row.SelectNodes("th"))
                     {
-                        Console.WriteLine("cell" + cell.InnerText);
+                        //Console.WriteLine("cell" + cell.InnerText);
                         var outDate = cell.InnerText;
                         var parsedDate = DateTime.Parse(outDate);
                         holidays.Add(parsedDate);

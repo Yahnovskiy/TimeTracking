@@ -5,6 +5,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TechTalk.SpecFlow;
+using OpenQA.Selenium.PhantomJS;
+   
 
 namespace SpecFlowDemo
 {
@@ -14,6 +16,7 @@ namespace SpecFlowDemo
         [BeforeScenario]
         public void OpenBrowser()
         {
+            //var driver = new PhantomJSDriver();
             var driver = new ChromeDriver();
             ScenarioContext.Add("driver", driver);
         }

@@ -12,9 +12,20 @@ And I Fill Time Tracking Form
 
  Examples:
 | Activity_e | TimeSpent_e | Category_e  | SubProject_e  | RecordType_e       | Billable_e |
-| *          | 8,0         | 2 - Testing | 40 Magnet O&M | 1.1 - Work regular | true       |           
-#| PTO		  | 0,0         | 2 - Testing | 40 Magnet O&M | 2.6 - Absence	   | false        |
+| *          | 8,0         | 2 - Testing |10 WS Hoteling | 1.1 - Work regular | true       |         
+#| PTO		  | 0,0         | 2 - Testing | 40 Magnet O&M | 2.6 - Absence	   | false      |
 
+#	Category *
+#1 - Development
+#2 - Testing
+
+#	SubProject *
+#10 WS Hoteling
+#20 Magnet Brand Refresh
+#30 VC Planner
+#40 Magnet O&M
+
+#	Record type *
 #1.1 - Work regular
 #1.2 - Work overtime
 #1.3 - Work on holidays
