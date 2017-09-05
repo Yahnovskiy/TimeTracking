@@ -71,7 +71,7 @@ namespace SpecFlowDemo.PageObjects
                 SwitchOFFBilable(userData.Billable);
                 ChooseSubProject(userData.SubProject);
                 ChooseRecordType(userData.RecordType);
-
+                Thread.Sleep(TimeSpan.FromSeconds(1));
                 SaveButton.Click();
                 Thread.Sleep(TimeSpan.FromSeconds(3));                
             }
