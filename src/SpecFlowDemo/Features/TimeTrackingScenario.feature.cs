@@ -67,7 +67,7 @@ namespace SpecFlowDemo.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("FillTimeTracking")]
-        [NUnit.Framework.TestCaseAttribute("*", "8,0", "2 - Testing", "10 WS Hoteling", "1.1 - Work regular", "true", null)]
+        [NUnit.Framework.TestCaseAttribute("*", "8,0", "2 - Testing", "20 USI Space Management", "1.1 - Work regular", "true", null)]
         public virtual void FillTimeTracking(string activity_E, string timeSpent_E, string category_E, string subProject_E, string recordType_E, string billable_E, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("FillTimeTracking", exampleTags);
