@@ -11,7 +11,7 @@ And I Fill Time Tracking Form
  #And I choose switch OFF bilable if '<Bilable_e>'
 
  Examples:
-| Activity_e | TimeSpent_e | Category_e  | SubProject_e  | RecordType_e       | Billable_e |
+| Activity_e | TimeSpent_e | Category_e  | SubProject_e			 | RecordType_e       | Billable_e |
 | *          | 8,0         | 2 - Testing |20 USI Space Management| 1.1 - Work regular | true       |         
 #| PTO		  | 0,0         | 2 - Testing | 40 Magnet O&M | 2.6 - Absence	   | false      |
 

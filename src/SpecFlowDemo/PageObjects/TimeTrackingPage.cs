@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 using SpecFlowDemo.Model;
 using System;
 using System.Collections.Generic;
@@ -58,10 +59,11 @@ namespace SpecFlowDemo.PageObjects
             businessDays.Reverse();
 
             foreach (var eachBusinessDay in businessDays)
-            {                
-                StopButton.Click();                
-                Thread.Sleep(TimeSpan.FromSeconds(2));
-                HomePageNewItem.Click();
+            {
+                WaitElement(StopButton);
+                //StopButton.Click();
+                WaitElement(HomePageNewItem);        
+                //HomePageNewItem.Click();
                 VerifyIframeLoaded();
                 driver.SwitchTo().Frame(SwitchToFrame);
                 ChooseDate(eachBusinessDay.ToString("dd.MM.yyyy"));
@@ -71,10 +73,16 @@ namespace SpecFlowDemo.PageObjects
                 SwitchOFFBilable(userData.Billable);
                 ChooseSubProject(userData.SubProject);
                 ChooseRecordType(userData.RecordType);
-                Thread.Sleep(TimeSpan.FromSeconds(1));
-                SaveButton.Click();
-                Thread.Sleep(TimeSpan.FromSeconds(3));                
+                WaitElement(SaveButton);
+                //SaveButton.Click();                
             }
+        }
+
+        public static void WaitElement(IWebElement element)
+        {
+            do { Thread.Sleep(TimeSpan.FromSeconds(2));  }
+            while (!element.Displayed);
+            element.Click();            
         }
 
         public void CheckDates()
@@ -121,6 +129,8 @@ namespace SpecFlowDemo.PageObjects
         {
             RecordTypeButton.Click();
             driver.FindElement(By.XPath(".//*[text() ='" + recordType + "']")).Click();
+            driver.FindElement(By.XPath("//*[@title='Record type Required Field']/option[text() ='" + recordType + "']")).Click();
+            
         }
 
         public void ChooseDate(string dayOfWeek)
