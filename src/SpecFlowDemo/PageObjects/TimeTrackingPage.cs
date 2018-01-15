@@ -80,8 +80,9 @@ namespace SpecFlowDemo.PageObjects
 
         public static void WaitElement(IWebElement element)
         {
-            do { Thread.Sleep(TimeSpan.FromSeconds(2));  }
-            while (!element.Displayed);
+            var timer = 0;
+            do { timer++; Thread.Sleep(TimeSpan.FromSeconds(1));  }
+            while (!element.Displayed && timer < 10);
             element.Click();            
         }
 
