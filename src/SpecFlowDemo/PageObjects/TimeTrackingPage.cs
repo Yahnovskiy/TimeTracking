@@ -54,8 +54,8 @@ namespace SpecFlowDemo.PageObjects
         public void FillTimeTrackingForm(TimeTrackingModel userData)
         {
             CheckDates();
-            var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
-            var businessDays = GetBusinessDays(startOfWeek, 5).ToList();
+            var startOfWeek = GetStartOfTheWeek(DateTime.Now.AddDays(3), DayOfWeek.Monday);
+            var businessDays = GetBusinessDays(startOfWeek, 3).ToList();
             businessDays.Reverse();
 
             foreach (var eachBusinessDay in businessDays)
@@ -64,8 +64,8 @@ namespace SpecFlowDemo.PageObjects
                 //StopButton.Click();
                 WaitElement(HomePageNewItem);        
                 //HomePageNewItem.Click();
-                VerifyIframeLoaded();
-                driver.SwitchTo().Frame(SwitchToFrame);
+                //VerifyIframeLoaded();
+                //driver.SwitchTo().Frame(SwitchToFrame);
                 ChooseDate(eachBusinessDay.ToString("dd.MM.yyyy"));
                 ChooseActivity(userData.Activity);
                 SetTimeSpent(userData.TimeSpent);
@@ -81,15 +81,15 @@ namespace SpecFlowDemo.PageObjects
         public static void WaitElement(IWebElement element)
         {
             var timer = 0;
-            do { timer++; Thread.Sleep(TimeSpan.FromSeconds(1));  }
+            do { timer++; Thread.Sleep(TimeSpan.FromSeconds(3));  }
             while (!element.Displayed && timer < 10);
             element.Click();            
         }
 
         public void CheckDates()
         {
-            var startOfWeek = GetStartOfTheWeek(DateTime.Today, DayOfWeek.Monday);
-            var businessDays = GetBusinessDays(startOfWeek, 5).ToArray();
+            var startOfWeek = GetStartOfTheWeek(DateTime.Now.AddDays(3), DayOfWeek.Monday);
+            var businessDays = GetBusinessDays(startOfWeek, 3).ToArray();
             foreach (var eachBusinessDay in businessDays)
             {
                 DateIsNotPresent(eachBusinessDay.ToString("dd.MM.yyyy"));
@@ -129,9 +129,10 @@ namespace SpecFlowDemo.PageObjects
         public void ChooseRecordType(string recordType)
         {
             RecordTypeButton.Click();
+
             driver.FindElement(By.XPath(".//*[text() ='" + recordType + "']")).Click();
             driver.FindElement(By.XPath("//*[@title='Record type Required Field']/option[text() ='" + recordType + "']")).Click();
-            
+
         }
 
         public void ChooseDate(string dayOfWeek)
