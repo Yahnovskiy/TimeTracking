@@ -251,5 +251,9 @@ namespace SpecFlowDemo.PageObjects
             }
             return holidays;
         }
+        public void test()
+        {
+
+        }
     }
 }
