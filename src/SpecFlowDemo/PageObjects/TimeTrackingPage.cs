@@ -226,7 +226,8 @@ namespace SpecFlowDemo.PageObjects
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             WebClient wc = new WebClient();
-
+            
+            wc.Encoding = System.Text.Encoding.UTF8;
             string raw = wc.DownloadString($"http://www.timeanddate.com/holidays/ukraine/{DateTime.Today.Year}");
 
             HtmlDocument htmlDoc = new HtmlDocument();
