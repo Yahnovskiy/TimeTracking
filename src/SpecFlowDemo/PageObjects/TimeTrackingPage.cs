@@ -221,36 +221,36 @@ namespace SpecFlowDemo.PageObjects
             return date;
         } 
         
-        public static List<DateTime> GetHolidays()
-        {
-            ServicePointManager.Expect100Continue = true;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            WebClient wc = new WebClient();
+        //public static List<DateTime> GetHolidays()
+        //{
+        //    ServicePointManager.Expect100Continue = true;
+        //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+        //    WebClient wc = new WebClient();
             
-            wc.Encoding = System.Text.Encoding.UTF8;
-            string raw = wc.DownloadString($"http://www.timeanddate.com/holidays/ukraine/{DateTime.Today.Year}");
+        //    wc.Encoding = System.Text.Encoding.UTF8;
+        //    string raw = wc.DownloadString($"http://www.timeanddate.com/holidays/ukraine/{DateTime.Today.Year}");
 
-            HtmlDocument htmlDoc = new HtmlDocument();
-            htmlDoc.LoadHtml(raw);
-            var imgXpath = htmlDoc.DocumentNode.SelectNodes(".//*[@class='zebra fw tb-cl tb-hover']/tbody");
-            List<DateTime> holidays = new List<DateTime>();
+        //    HtmlDocument htmlDoc = new HtmlDocument();
+        //    htmlDoc.LoadHtml(raw);
+        //    var imgXpath = htmlDoc.DocumentNode.SelectNodes(".//*[@class='zebra fw tb-cl tb-hover']/tbody");
+        //    List<DateTime> holidays = new List<DateTime>();
 
-            foreach (HtmlNode table in imgXpath)
-            {
-                //Console.WriteLine("Found" + table.Id);
-                foreach( HtmlNode row in table.SelectNodes("tr"))
-                {
-                    //Console.WriteLine("row");
-                    foreach(HtmlNode cell in row.SelectNodes("th"))
-                    {
-                        //Console.WriteLine("cell" + cell.InnerText);
-                        var outDate = cell.InnerText;
-                        var parsedDate = DateTime.Parse(outDate);
-                        holidays.Add(parsedDate);
-                    }
-                }                
-            }
-            return holidays;
+        //    foreach (HtmlNode table in imgXpath)
+        //    {
+        //        //Console.WriteLine("Found" + table.Id);
+        //        foreach( HtmlNode row in table.SelectNodes("tr"))
+        //        {
+        //            //Console.WriteLine("row");
+        //            foreach(HtmlNode cell in row.SelectNodes("th"))
+        //            {
+        //                //Console.WriteLine("cell" + cell.InnerText);
+        //                var outDate = cell.InnerText;
+        //                var parsedDate = DateTime.Parse(outDate);
+        //                holidays.Add(parsedDate);
+        //            }
+        //        }                
+        //    }
+        //    return holidays;
         }
     }
 }
